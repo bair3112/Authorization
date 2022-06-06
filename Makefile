@@ -1,3 +1,5 @@
+include .env
+
 .DEFAULT_GOAL: init
 
 .PHONY: init
@@ -23,3 +25,15 @@ up:
 .PHONY: down
 down:
 	docker-compose down -v
+
+.PHONY: sh
+sh: up
+	docker-compose exec -e XDEBUG_MODE=off -u 1000:1000 authorization bash
+
+.PHONY: migrate
+migrate:
+	docker-compose exec -u 1000:1000 authorization \
+		migrate \
+			-path ./migrations/ \
+			-database postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)?sslmode=disable \
+			up

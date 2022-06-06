@@ -5,7 +5,7 @@
         }
     },
     "applications": {
-        "bot": {
+        "authorization": {
             "type": "php",
             "working_directory": "/opt/authorization",
             "root": "/opt/authorization/app/public",
