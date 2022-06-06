@@ -19,3 +19,15 @@ To access the authorization application through a web browser, add the following
 ```txt
 127.0.0.1 auth.local
 ```
+
+### Development
+In order to enter the application container, enter in the console:
+
+```bash
+make sh
+```
+
+To create migration files, in the console type:
+```bash
+migrate create -ext sql -dir migrations <migration_name>
+```
